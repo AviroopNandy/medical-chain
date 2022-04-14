@@ -60,32 +60,41 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    for await (const file of ipfs.add(globSource("./uploads/" + fileName))) {
-      console.log(file);
-    }
+    // for await (const file of ipfs.add(globSource("./uploads/" + fileName))) {
+    //   console.log(file);
+    // }
     const config = {
       headers: {
         "Content-Type": "Application/json",
         "Access-Control-Allow-Origin": "*",
       },
     };
-    const body = {
-      email: this.state.email,
-      password: this.state.password,
-      publicAddress: this.state.publicAddress,
+    if (!/^0x[a-fA-F0-9]{40}$/.test(this.state.publicAddress)){
+      alert("Please enter a valid public address");
+      //return;
+    }
+    else{
+      const body = {
+        email: this.state.email,
+        password: this.state.password,
+        publicAddress: this.state.publicAddress,
+      };
+      axios
+        .post("http://localhost:8000/user/login", body, config)
+        .then((res) => {
+          // console.log(res);
+          if (res.status === 200) {
+            window.location.assign("/");
+            this.addCandidates();
+          }
+        })
+        // .catch((err) => {
+        //   console.log(err);
+        // });
     };
-    axios
-      .post("http://localhost:8000/user/login", body, config)
-      .then((res) => {
-        // console.log(res);
-        if (res.status === 200) {
-          this.addCandidates();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
+    }
+    
 
   addCandidates() {
     console.log(this.state);
@@ -100,7 +109,7 @@ class Login extends Component {
       .once("receipt", (receipt) => {
         console.log(receipt);
         this.setState({ loading: false });
-        window.location.assign("/");
+        //window.location.assign("/");
       });
   }
 

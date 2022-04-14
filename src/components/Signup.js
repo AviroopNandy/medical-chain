@@ -30,30 +30,45 @@ class Signup extends Component {
         "Access-Control-Allow-Origin": "*",
       },
     };
-    const body = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      mobile: this.state.contact,
-      publicAddress: this.state.publicAddress,
-    };
-    axios
-      .post("http://localhost:8000/user/signup", body, config)
-      .then((res) => {
-        // console.log(res);
-        if (res.status === 200) {
-          this.addPatients();
-        }
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    if(this.state.contact.length !== 10) {
+      alert("Please enter a valid 10-digit contact number");
+    }
+    else if (this.state.password.length < 8) {
+      alert("Password should be at least 8 characters long");
+    }
+    else if (!/^0x[a-fA-F0-9]{40}$/.test(this.state.publicAddress)){
+      alert("Please enter a valid public address");
+      //return;
+    }
+    else{
+      const body = {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        mobile: this.state.contact,
+        publicAddress: this.state.publicAddress,
+      };
+      axios
+        .post("http://localhost:8000/user/signup", body, config)
+        .then((res) => {
+          // console.log(res);
+          if (res.status === 200) {
+            window.location.assign("/");
+            this.addPatients();
+          }
+        })
+        // .catch((err) => {
+        //   alert(err);
+        // });
+
+    }    
   };
 
   addPatients() {
     console.log("final", this.state);
     this.setState({ loading: true });
     this.state.patient.methods
+    //this.state.patient
       .addPatient(
         this.state.account,
         this.state.name,
@@ -64,7 +79,7 @@ class Signup extends Component {
       .once("receipt", (receipt) => {
         console.log(receipt);
         this.setState({ loading: false });
-        window.location.assign("/");
+        //window.location.assign("/");
       });
   }
 

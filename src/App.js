@@ -10,7 +10,7 @@ import AddDoctor from "./components/AddDoctor";
 import Footer from "./components/Footer";
 import Analysis from "./components/Analysis";
 import Home from "./components/Home";
-//import Login from './components/Login';
+import Login from "./components/Login";
 
 class App extends Component {
   constructor() {
@@ -52,7 +52,7 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
     this.setState({ account: accounts[0] });
     const networkId = await web3.eth.net.getId();
-    const networkData = Patient.networks[networkId]
+    const networkData = Patient.networks[networkId];
     //const networkData = Patient.networks["5777"];
     if (networkData) {
       const patient = new web3.eth.Contract(Patient.abi, networkData.address);
@@ -85,7 +85,16 @@ class App extends Component {
                   />
                 )}
               />
-              {/* <Route exact path="/login" component={(() => <Login account={this.state.account} patient={this.state.patient}/>)} /> */}
+              <Route
+                exact
+                path="/login"
+                component={() => (
+                  <Login
+                    account={this.state.account}
+                    patient={this.state.patient}
+                  />
+                )}
+              />
               <Route
                 exact
                 path="/upload"

@@ -22,6 +22,10 @@ class Navbar extends Component {
     window.location.href = "/signup";
   }
 
+  loginHandler() {
+    window.location.href = "/login";
+  }
+
   handleClick() {
     this.setState((currentState) => ({
       showOptions: !currentState.showOptions,
@@ -75,6 +79,14 @@ class Navbar extends Component {
                   onClick={() => this.signupHandler()}
                 >
                   Signup
+                </p>
+              </li>
+              <li>
+                <p
+                  style={{ marginLeft: "50px", cursor: "pointer" }}
+                  onClick={() => this.loginHandler()}
+                >
+                  Login
                 </p>
               </li>
               <li
@@ -154,7 +166,6 @@ class Navbar extends Component {
         <nav className="nav-wrapper teal darken-3">
           <div className="container">
             <a href="#" className="brand-logo">
-              
               Medical Chain
             </a>
             <ul className="right hide-on-med-and-down">

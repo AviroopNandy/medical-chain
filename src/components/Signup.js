@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Signup extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Signup extends Component {
       patient: this.props.patient,
       account: this.props.account,
       loading: null,
+      publicAddress: null,
     };
   }
 
@@ -22,7 +24,30 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.addPatients();
+    const config = {
+      headers: {
+        "Content-Type": "Application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+    const body = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      mobile: this.state.contact,
+      publicAddress: this.state.publicAddress,
+    };
+    axios
+      .post("http://localhost:8000/user/signup", body, config)
+      .then((res) => {
+        // console.log(res);
+        if (res.status === 200) {
+          this.addPatients();
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   addPatients() {
@@ -49,7 +74,7 @@ class Signup extends Component {
         <h4 style={{ fontSize: "40px" }}>
           Please share a few details to get you started...
         </h4>
-        <form onSubmit={(e)=>this.handleSubmit(e)}>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label htmlFor="name" style={{ fontSize: "20px" }}>
             Name
           </label>
@@ -60,7 +85,7 @@ class Signup extends Component {
             name="name"
             className="inputBox"
             value={this.state.name}
-            onChange={(e)=>this.handleInputChange(e)}
+            onChange={(e) => this.handleInputChange(e)}
             required
           />
           <br></br>
@@ -74,7 +99,7 @@ class Signup extends Component {
             placeholder="Please enter your contact number"
             className="inputBox"
             value={this.state.contact}
-            onChange={(e)=>this.handleInputChange(e)}
+            onChange={(e) => this.handleInputChange(e)}
             required
           />
           <br></br>
@@ -84,11 +109,11 @@ class Signup extends Component {
           <input
             type="email"
             id="email"
-            placeholder="Please enter your contact number"
+            placeholder="Please enter your email id"
             className="inputBox"
             name="email"
             value={this.state.email}
-            onChange={(e)=>this.handleInputChange(e)}
+            onChange={(e) => this.handleInputChange(e)}
             required
           />
           <br></br>
@@ -102,7 +127,21 @@ class Signup extends Component {
             name="password"
             className="inputBox"
             value={this.state.password}
-            onChange={(e)=>this.handleInputChange(e)}
+            onChange={(e) => this.handleInputChange(e)}
+            required
+          />
+          <br></br>
+          <label htmlFor="publicAddress" style={{ fontSize: "20px" }}>
+            Public Address
+          </label>
+          <input
+            type="text"
+            id="publicAddress"
+            placeholder="Please enter your public address"
+            name="publicAddress"
+            className="inputBox"
+            value={this.state.publicAddress}
+            onChange={(e) => this.handleInputChange(e)}
             required
           />
           <br></br>

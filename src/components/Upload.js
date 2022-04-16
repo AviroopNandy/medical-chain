@@ -63,49 +63,51 @@ class Upload extends Component {
   render() {
     return (
       <div className="container">
-        <h4 htmlFor="file" style={{ fontSize: "40px", color: "black" }}>
-          Upload Medical Document
-        </h4>
-        <form onSubmit={this.onSubmit} encType="multipart/form-data">
-          <br></br>
-          <br></br>
-          <input
-            type="file"
-            id="file"
-            name="file"
-            onChange={this.captureFile}
-            required
-          />
+        <div style={{display: "flex", width: "100%", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+          <h4 htmlFor="file" style={{ fontSize: "40px", color: "black" }} style={{width: "70%"}}>
+            Upload Medical Document
+          </h4>
+          <form onSubmit={this.onSubmit} encType="multipart/form-data" style={{width: "70%"}}>
+            <br></br>
+            <br></br>
+            <input
+              type="file"
+              id="file"
+              name="file"
+              onChange={this.captureFile}
+              required
+            />
 
-          <br></br>
-          <br></br>
-          <label htmlFor="fname" style={{ fontSize: "20px" }}>
-            Name
-          </label>
-          <input
-            type="text"
-            id="fname"
-            name="fname"
-            className="inputBox"
-            placeholder="Please enter your name"
-            onChange={this.handleInputChange}
-            required
-          />
-          <br></br>
-          <br></br>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-            }}
-          >
-            <button className="btn green darken-2" type="submit" name="action">
-              Upload
-              <i className="material-icons right">arrow_upward</i>
-            </button>
-          </div>
-        </form>
+            <br></br>
+            <br></br>
+            <label htmlFor="fname" style={{ fontSize: "20px" }}>
+              Name
+            </label>
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              className="inputBox"
+              placeholder="Please enter your name"
+              onChange={this.handleInputChange}
+              required
+            />
+            <br></br>
+            <br></br>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <button className="btn teal darken-3" type="submit" name="action">
+                Upload
+                <i className="material-icons right">arrow_upward</i>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

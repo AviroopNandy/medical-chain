@@ -15,9 +15,9 @@ const Home = (props) => {
       <div class="row">
         <div class="col s12">
           <div className="container">
-            <h2 style={{ textAlign: "center" }}>
+            {/* <h2 style={{ textAlign: "center" }}>
               <b>The Medical Chain</b>
-            </h2>
+            </h2> */}
             <h2>
               <b>Welcome!</b>
             </h2>

@@ -112,7 +112,7 @@ class AddDoctor extends Component {
                                 width: "100%",
                                 }}
                             >
-                            <button className="btn green darken-2" type="submit" name="action">Add Doctor
+                            <button className="btn teal darken-3" type="submit" name="action">Add Doctor
                                 <i className="material-icons right">person_add</i>
                             </button>
                             </div>

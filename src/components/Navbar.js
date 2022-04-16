@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, withRouter, Link } from "react-router-dom";
 //import Identicon from './identicon';
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.png";
 import "../styles/navbar.css";
 
 class Navbar extends Component {
@@ -63,8 +63,8 @@ class Navbar extends Component {
                     style={{ marginTop: 22, marginLeft: 15 }}
                     className="v-align center"
                     id="icon"
-                    width="30"
-                    height="30"
+                    width="60"
+                    // height="30"
                     src={logo}
                     alt=""
                     //src={`data:image/png;base64,${new Identicon(this.state.account, 30).toString()}`}
@@ -74,20 +74,28 @@ class Navbar extends Component {
                 )}
               </li>
               <li>
-                <p
-                  style={{ marginLeft: "50px", cursor: "pointer" }}
-                  onClick={() => this.signupHandler()}
-                >
-                  Signup
-                </p>
+                {/* {sessionStorage.getItem("isLoggedIn") === "true" ? (
+                  ""
+                ) : ( */}
+                  <p
+                    style={{ marginLeft: "50px", cursor: "pointer" }}
+                    onClick={() => this.signupHandler()}
+                  >
+                    Signup
+                  </p>
+                {/* )} */}
               </li>
               <li>
-                <p
-                  style={{ marginLeft: "50px", cursor: "pointer" }}
-                  onClick={() => this.loginHandler()}
-                >
-                  Login
-                </p>
+                {/* {sessionstorage.getItem("isLoggedIn") === "true" ? (
+                  ""
+                ) : ( */}
+                  <p
+                    style={{ marginLeft: "10px", cursor: "pointer" }}
+                    onClick={() => this.loginHandler()}
+                  >
+                    Login
+                  </p>
+                {/* )} */}
               </li>
               <li
                 style={{ cursor: "pointer" }}
@@ -184,11 +192,11 @@ class Navbar extends Component {
               <li>
                 {this.props.account ? (
                   <img
-                    style={{ marginTop: 15, marginLeft: 15 }}
+                    style={{ marginTop: 6, marginLeft: 15 }}
                     className="v-align center"
                     id="icon"
-                    width="30"
-                    height="30"
+                    width="50"
+                    // height="30"
                     src={logo}
                     alt=""
                     // src={`data:image/png;base64,${new Identicon(this.state.account, 30).toString()}`}

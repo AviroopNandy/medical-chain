@@ -51,7 +51,7 @@ class View extends Component {
                         <i className="material-icons circle blue darken-2">insert_drive_file</i>
                         <p><b>{files.fileName}</b></p>
                         <p><i>Uploaded on: {files.datetime}</i></p>
-                        <a href="" className="secondary-content"><button id={files.fileHash} onClick={this.handleInputChange} className="waves-effect waves-light btn blue darken-2">View</button></a>
+                        <a href="" className="secondary-content"><button id={files.fileHash} onClick={this.handleInputChange} className="waves-effect waves-light btn teal darken-3">View</button></a>
                         &nbsp;&nbsp;&nbsp;
                         <Link to={"/view/" + files.fileHash} className="secondary-content" style={{marginRight: 80}}><button id={files.fileHash} className="waves-effect waves-light btn orange darken-3">Analyze</button></Link>
                     </li>

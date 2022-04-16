@@ -84,6 +84,7 @@ class Login extends Component {
         .then((res) => {
           // console.log(res);
           if (res.status === 200) {
+            sessionStorage.setItem("isLoggedIn", "true");
             window.location.assign("/");
             this.addCandidates();
           }
@@ -116,66 +117,68 @@ class Login extends Component {
   render() {
     return (
       <div className="container">
-        <h4 style={{ fontSize: "40px" }}>
-          Please enter your credentials to login...
-        </h4>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email" style={{ fontSize: "20px" }}>
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Please enter your email id"
-            className="inputBox"
-            name="email"
-            value={this.state.email}
-            onChange={(e) => this.handleInputChange(e)}
-            required
-          />
-          <br></br>
-          <label htmlFor="password" style={{ fontSize: "20px" }}>
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Please enter your password"
-            name="password"
-            className="inputBox"
-            value={this.state.password}
-            onChange={(e) => this.handleInputChange(e)}
-            required
-          />
-          <br></br>
-          <label htmlFor="publicAddress" style={{ fontSize: "20px" }}>
-            Public Address
-          </label>
-          <input
-            type="text"
-            id="publicAddress"
-            placeholder="Please enter your public address"
-            name="publicAddress"
-            className="inputBox"
-            value={this.state.publicAddress}
-            onChange={(e) => this.handleInputChange(e)}
-            required
-          />
-          <br></br>
-          <br></br>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "100%",
-            }}
-          >
-            <button className="btn green darken-2" type="submit" name="action">
-              Login
-              <i className="material-icons right">person_add</i>
-            </button>
-          </div>
-        </form>
+        <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+          <h4 style={{ fontSize: "40px", width: "70%"}}>
+            Please enter your credentials to login...
+          </h4>
+          <form onSubmit={this.handleSubmit} style={{width: "70%"}}>
+            <label htmlFor="email" style={{ fontSize: "20px" }}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Please enter your email id"
+              className="inputBox"
+              name="email"
+              value={this.state.email}
+              onChange={(e) => this.handleInputChange(e)}
+              required
+            />
+            <br></br>
+            <label htmlFor="password" style={{ fontSize: "20px" }}>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Please enter your password"
+              name="password"
+              className="inputBox"
+              value={this.state.password}
+              onChange={(e) => this.handleInputChange(e)}
+              required
+            />
+            <br></br>
+            <label htmlFor="publicAddress" style={{ fontSize: "20px" }}>
+              Account Address
+            </label>
+            <input
+              type="text"
+              id="publicAddress"
+              placeholder="Please enter your public address"
+              name="publicAddress"
+              className="inputBox"
+              value={this.state.publicAddress}
+              onChange={(e) => this.handleInputChange(e)}
+              required
+            />
+            <br></br>
+            <br></br>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <button className="btn teal darken-3" type="submit" name="action">
+                Login
+                <i className="material-icons right">person_add</i>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
